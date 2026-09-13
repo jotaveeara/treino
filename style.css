@@ -84,6 +84,40 @@ main { padding: 18px 16px 8px; max-width: 560px; margin: 0 auto; }
   margin: 4px 0 14px;
 }
 
+/* ---------- SELETOR DE DIA ---------- */
+
+.seletor-dia {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  scrollbar-width: none;
+}
+
+.seletor-dia::-webkit-scrollbar { display: none; }
+
+.seletor-dia__botao {
+  flex: 0 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 10px;
+  padding: 8px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seletor-dia__botao.is-real-hoje {
+  border-color: var(--text-faint);
+}
+
+.seletor-dia__botao.is-selecionado {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #1a1006;
+}
+
 /* ---------- DIA HERO ---------- */
 
 .dia-hero {

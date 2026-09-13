@@ -1,10 +1,14 @@
 /* =========================================================
-   TREINO DO PEDRO — dados do treino + lógica do app
+   PROJETO PATROLA — dados do treino + lógica do app
    Os dados dos treinos ficam salvos no navegador (localStorage),
    por isso o histórico é local a cada celular/navegador.
 ========================================================= */
 
 const DIAS_SEMANA = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+const DIAS_ABREVIADOS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+const ORDEM_SEMANA = [1, 2, 3, 4, 5, 6, 0];
+
+let diaSelecionado = new Date().getDay();
 
 const TREINOS = {
   1: { // Segunda
@@ -173,12 +177,37 @@ function mostrarToast(mensagem) {
 
 /* ---------- Renderização: ABA HOJE ---------- */
 
+function renderSeletorDia() {
+  const hojeReal = new Date().getDay();
+  const container = document.getElementById('seletorDia');
+  container.innerHTML = '';
+
+  ORDEM_SEMANA.forEach((diaIndex) => {
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'seletor-dia__botao';
+    if (diaIndex === hojeReal) botao.classList.add('is-real-hoje');
+    if (diaIndex === diaSelecionado) botao.classList.add('is-selecionado');
+    botao.textContent = DIAS_ABREVIADOS[diaIndex];
+    botao.addEventListener('click', () => {
+      diaSelecionado = diaIndex;
+      renderHoje();
+    });
+    container.appendChild(botao);
+  });
+}
+
 function renderHoje() {
   const hoje = new Date();
-  const diaSemana = hoje.getDay();
-  const treino = TREINOS[diaSemana];
+  const hojeReal = hoje.getDay();
+  const treino = TREINOS[diaSelecionado];
 
-  document.getElementById('diaNome').textContent = DIAS_SEMANA[diaSemana];
+  renderSeletorDia();
+
+  const diaLabel = document.getElementById('diaLabel');
+  diaLabel.textContent = diaSelecionado === hojeReal ? 'Hoje é' : 'Treino escolhido:';
+
+  document.getElementById('diaNome').textContent = DIAS_SEMANA[diaSelecionado];
   document.getElementById('diaFoco').textContent = treino.foco;
 
   const dataAtual = document.getElementById('dataAtual');
@@ -334,6 +363,11 @@ function renderSemana() {
         <p class="semana-card__extra">${extra}</p>
       </div>
     `;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      diaSelecionado = diaIndex;
+      trocarAba('hoje');
+    });
     lista.appendChild(card);
   });
 }

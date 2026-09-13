@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#121110">
-<title>Treino do Pedro</title>
+<title>Projeto Patrola</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="manifest" href="manifest.json">
@@ -18,7 +18,7 @@
   <header class="topbar">
     <div class="topbar__row">
       <span class="topbar__plate">●</span>
-      <h1 class="topbar__title">Treino do Pedro</h1>
+      <h1 class="topbar__title">Projeto Patrola</h1>
     </div>
     <p class="topbar__date" id="dataAtual"></p>
   </header>
@@ -27,8 +27,10 @@
 
     <!-- ABA HOJE -->
     <section class="view" id="view-hoje">
+      <div class="seletor-dia" id="seletorDia"></div>
+
       <div class="dia-hero" id="diaHero">
-        <span class="dia-hero__label">Hoje é</span>
+        <span class="dia-hero__label" id="diaLabel">Hoje é</span>
         <h2 class="dia-hero__nome" id="diaNome">—</h2>
         <p class="dia-hero__foco" id="diaFoco">—</p>
       </div>

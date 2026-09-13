@@ -1,6 +1,6 @@
 {
-  "name": "Treino do Pedro",
-  "short_name": "Treino",
+  "name": "Projeto Patrola",
+  "short_name": "Patrola",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#121110",
