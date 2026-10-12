@@ -1,27 +1,28 @@
-# Projeto Patrola
+# Projeto Patrola — versão 2
 
-App de academia feito sob medida com o treino da planilha do Pedro. Mostra o treino do dia automaticamente, deixa trocar qual treino está sendo visto (por exemplo, fazer o treino de quinta no sábado se faltou naquele dia), registra peso e repetições de cada série e guarda o histórico no próprio celular para acompanhar o progresso.
+Aplicativo de treino responsivo em preto e vermelho. HTML, CSS e JavaScript sem build, pronto para GitHub Pages na raiz de `main`.
 
-## Como colocar no GitHub (igual ao repositório de exemplo)
+## Uso
 
-1. Crie um repositório novo no GitHub, por exemplo `projeto-patrola`.
-2. Envie os arquivos desta pasta (`index.html`, `style.css`, `app.js`, `manifest.json`, `icon.svg`) para a raiz do repositório.
-3. No repositório, vá em **Settings → Pages**.
-4. Em **Source**, selecione a branch `main` e a pasta `/ (root)`. Salve.
-5. Em alguns minutos o GitHub mostra o link do site, algo como:
-   `https://SEU-USUARIO.github.io/projeto-patrola/`
-6. Abra esse link no celular. No Chrome/Safari, use "Adicionar à tela inicial" para ele funcionar como um aplicativo.
+- Informe o nome no primeiro acesso. A saudação acompanha o relógio local.
+- A ficha fornecida contém 31 exercícios: A segunda (6), B terça (6), C quarta (7), D quinta (5), E sexta (7). Todos têm 4 séries, com as repetições da ficha original. Os dois exercícios com duas cargas têm dois campos de peso.
+- Abra o treino do dia ou escolha outro pela aba Minha ficha. Sem treino programado no sábado e domingo por padrão.
+- Informe carga opcional e repetições em cada linha. Toque em Finalizar série para registrar; toque novamente para desfazer. Todas as séries concluídas finalizam o treino automaticamente.
+- Descanso é opcional e começa desativado, pois a ficha não fornece intervalos. Ative pela tela do treino. O contador usa tempo absoluto; notificações em segundo plano não são garantidas.
+- Minha ficha permite criar, editar, excluir e reordenar exercícios, definir séries/repetições e associar o treino a um dia. Ao ocupar um dia existente, o treino anterior fica sem dia fixo, após confirmação.
+- Uma sessão por treino por data local. A sessão começa em Iniciar ou ao registrar uma série/carga. Ela guarda uma cópia da ficha para que edições posteriores não alterem o histórico. Edições afetam sessões ainda não iniciadas.
+- Histórico reúne séries concluídas e permite consultar registros do aplicativo anterior.
+- Perfil permite exportar/importar backup JSON e alterar o nome. Importar substitui os registros da versão 2 após confirmação.
 
-## Como funciona
+## Dados e offline
 
-- **Aba Hoje**: mostra automaticamente o treino do dia da semana atual. Tem uma fileira de botões (Seg, Ter, Qua...) no topo para trocar manualmente qual treino está sendo exibido — útil se faltou um dia e quer compensar em outro: por exemplo, faltou na quinta e quer fazer aquele treino no sábado, é só tocar em "Qui" mesmo estando no sábado. O botão do dia real da semana fica com um contorno mais claro para você sempre saber em que dia está de verdade. Para cada exercício dá pra preencher o peso (kg) e as repetições de cada série e apertar **Salvar**. É possível adicionar mais séries com o botão **+ série**.
-- **Aba Semana**: visão geral de todos os dias da semana, com o dia atual destacado em laranja. Tocar em qualquer dia já abre o treino dele na aba Hoje.
-- **Aba Progresso**: escolha um exercício e veja o histórico de todos os treinos salvos, incluindo a maior carga já registrada e um gráfico simples da evolução.
+Os dados ficam em `localStorage`, chave `patrola_v2`, no aparelho/navegador. Não há conta, servidor ou sincronização entre aparelhos. A chave antiga `treinoPedro_historico_v1` é preservada e pode ser consultada. Exporte antes de limpar o navegador ou trocar de aparelho.
 
-## Onde ficam os dados
+O service worker armazena o aplicativo após a primeira visita online para abertura offline. Fontes externas têm fallback local. Instalação e cache dependem do navegador; o Safari oferece Adicionar à Tela de Início. Ao atualizar o app, feche e reabra as abas se necessário.
 
-Tudo é salvo com `localStorage`, direto no navegador do celular — não depende de internet nem de login. Isso quer dizer que o histórico fica **naquele aparelho/navegador específico**; se abrir em outro celular ou limpar os dados do navegador, o histórico não aparece junto.
+## Publicação e verificação
 
-## Atualizar o treino no futuro
+GitHub Pages: Settings → Pages → Deploy from a branch → main → / (root). Não requer dependências ou build.
 
-Os exercícios de cada dia estão no arquivo `app.js`, dentro do objeto `TREINOS`. Cada dia da semana (0 = domingo, 1 = segunda... 6 = sábado) tem uma lista de grupos musculares e exercícios com o alvo de séries×repetições. Basta editar esse arquivo e subir a alteração para o GitHub para o site atualizar.
+Validação de sintaxe: `node --check app.js` e `node --check sw.js`.
+Não há vínculo com a Rivlo; a experiência de acompanhamento série a série foi usada como referência funcional.
