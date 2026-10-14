@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0b10">
+  <meta name="description" content="Sua ficha, seu ritmo. Treinos, cargas e séries no Patrola Pink.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Patrola Pink · Seu treino</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css?v=pink1">
+  <script src="app.js?v=pink1" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./" aria-label="Patrola, início"><span class="brand-icon">P<span></span></span>PATROLA<span class="brand-tag">PINK EDITION</span></a><button id="profile-shortcut" class="avatar" aria-label="Abrir perfil">P</button></header>
+  <main>
+    <div class="welcome"><div><p id="date-label" class="eyebrow"></p><h1 id="greeting">Seu próximo passo começa aqui.</h1></div><span class="live-label"><i></i> UM DIA DE CADA VEZ</span></div>
+    <section id="view-today" aria-label="Treino de hoje"></section>
+    <section id="view-plans" hidden aria-label="Minha ficha"></section>
+    <section id="view-history" hidden aria-label="Histórico"></section>
+    <section id="view-profile" hidden aria-label="Meu perfil"></section>
+    <p class="source-note">Sua ficha de segunda a sexta. Cargas e séries salvas no seu aparelho.</p><p class="footer-note">PATROLA PINK <span>SEU RITMO. SUA EVOLUÇÃO.</span></p>
+  </main>
+  <nav class="tabbar" aria-label="Navegação principal">
+    <button data-tab="today" class="active"><span aria-hidden="true">◈</span>Hoje</button>
+    <button data-tab="plans"><span aria-hidden="true">▤</span>Minha ficha</button>
+    <button data-tab="history"><span aria-hidden="true">↗</span>Histórico</button>
+    <button data-tab="profile"><span aria-hidden="true">◎</span>Perfil</button>
+  </nav>
+  <aside id="rest-bar" class="rest-bar" hidden><div><span class="eyebrow">DESCANSO</span><strong id="rest-clock" role="timer">00:00</strong></div><button id="rest-extra" class="ghost">+30s</button><button id="rest-stop" class="ghost">Encerrar</button></aside>
+  <aside id="set-timer" class="set-timer" hidden><div><span class="eyebrow">TEMPO DA SÉRIE</span><p id="set-timer-name"></p><strong id="set-clock" role="timer">00:00</strong></div><div><button id="set-pause" class="outline">Pausar</button><button id="set-cancel" class="ghost">Encerrar</button></div></aside>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="name-dialog"><form id="name-form"><span class="eyebrow red">BEM-VINDO AO PATROLA PINK</span><h2>Seu treino.<br>Seu ritmo.</h2><p>Como você quer ser chamado?</p><label>Seu nome<input id="user-name" name="name" autocomplete="given-name" required maxlength="40" placeholder="Digite seu nome"></label><button class="primary wide" type="submit">Começar <span>↗</span></button><p class="muted small">Seu nome e registros ficam salvos neste navegador.</p></form></dialog>
+  <dialog id="edit-dialog"><form id="edit-form"><div class="section-heading"><div><span class="eyebrow red">SUA FICHA, DO SEU JEITO</span><h2 id="edit-title">Editar treino</h2></div><button type="button" class="ghost" id="close-editor" aria-label="Fechar editor">✕</button></div><div class="form-grid"><label>Nome do treino<input name="title" required maxlength="60" placeholder="Treino F"></label><label>Dia da semana<select name="day"><option value="-1">Sem dia fixo</option><option value="1">Segunda-feira</option><option value="2">Terça-feira</option><option value="3">Quarta-feira</option><option value="4">Quinta-feira</option><option value="5">Sexta-feira</option><option value="6">Sábado</option><option value="0">Domingo</option></select></label></div><label>Foco do treino<input name="focus" maxlength="100" placeholder="Ex.: Peito e ombros"></label><div class="section-heading"><h3>Exercícios</h3><span class="muted small">Na ordem de execução</span></div><div id="editor-exercises"></div><button id="add-exercise" class="outline wide" type="button">+ Adicionar exercício</button><p class="muted small">Alterações valem para sessões ainda não iniciadas. Os registros anteriores são preservados.</p><div class="dialog-footer"><button id="delete-plan" type="button" class="danger">Excluir treino</button><button class="primary" type="submit">Salvar treino ✓</button></div></form></dialog>
+</body>
+</html>
