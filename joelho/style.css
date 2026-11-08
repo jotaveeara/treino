@@ -26,3 +26,17 @@ dialog{border-radius:26px;background:#14141a}input,select{border-radius:12px}.ba
 @media(min-width:800px){.tabbar{border-radius:24px}}@media(max-width:600px){.hero h2{font-size:48px}.tabbar{bottom:8px;width:calc(100% - 16px)}}
 
 .set-row button{background:#241b45}.set-row.done button{background:#183526}.set-timer{background:#1a1430}
+
+/* Animações de rolagem */
+.topbar{position:sticky;top:0;z-index:20;transition:background .25s,height .25s,box-shadow .25s}.topbar.scrolled{height:64px;background:#09090ccc;backdrop-filter:blur(14px);box-shadow:0 1px 0 #ffffff12}
+.rv{opacity:0;transform:translate3d(0,34px,0) scale(.98);filter:blur(6px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--d,0ms),transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0ms),filter .7s ease var(--d,0ms);will-change:opacity,transform}
+.rv.in{opacity:1;transform:none;filter:none}
+.hero:after{display:block;color:#a78bfa14;transform:translateY(var(--py,0px)) skew(-10deg)}
+.hero>*:not(.orb){position:relative;z-index:1}.hero .hero-top,.hero h2{opacity:var(--fade,1)}
+.orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;will-change:transform}
+.o1{width:190px;height:190px;right:-50px;top:-40px;background:radial-gradient(circle at 30% 30%,#a78bfa88,#7b4dff00 70%)}
+.o2{width:120px;height:120px;right:26%;bottom:-50px;border:2px solid #a78bfa44}
+.o3{width:46px;height:46px;left:44%;top:22px;background:linear-gradient(135deg,#c15bff66,#4f7bff33);filter:blur(2px)}
+.ribbon{overflow:hidden;margin:-4px -16px 22px;padding:10px 0;border-block:1px solid #ffffff10;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.ribbon span{display:inline-block;white-space:nowrap;font:700 22px/1 'Barlow Condensed',Impact,sans-serif;letter-spacing:4px;color:#c4b5fd55;will-change:transform}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;filter:none}}
